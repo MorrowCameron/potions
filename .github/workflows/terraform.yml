@@ -82,5 +82,6 @@ jobs:
     #     run: terraform apply -auto-approve -no-color
 
       # 8. Trigger Client Build
+      - uses: actions/checkout@v2
       - name: Invoke Client Build
         uses: ./.github/workflows/client-deploy.yml
