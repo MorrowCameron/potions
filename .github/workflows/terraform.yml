@@ -8,11 +8,12 @@
 # Credit: AlfredMadere
 # Modified: EthanV1920
 
-name: 'Terraform Server Depoly'
+name: 'Terraform Server Deploy'
 
 on:
   push:
-    branches: [ "prod" ]
+    branches: 
+      - main
   pull_request:
 
 permissions:
@@ -78,3 +79,7 @@ jobs:
       #if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         working-directory: ./.terraform-prod
         run: terraform apply -auto-approve -no-color
+
+      # 8. Trigger Client Build
+      - name: Invoke Client Build
+        uses: ./.github/workflows/client-deploy.yml
